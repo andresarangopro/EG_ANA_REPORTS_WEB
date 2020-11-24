@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Crear Reporte</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    
+    
+</head>
+<body class="container">
+    <h1 class="form-group text-center">Creación de reportes</h1>
+    <div class="container jumbotron" style="width: 90%;">
+        
+        <form action="/guardarReporte" method="POST" data-toggle="validator" enctype="multipart/form-data">
+            <div class="form-row">
+              <div class="form-group col-sm-6">
+                <label for="nombre_reporte">Nombre reporte</label>
+                <input type="text" required id="nombre_reporte" class="form-control" placeholder="Nombre reporte"  name="nombreReporte" maxlength="50">
+              </div>
+              <div class="form-group col-sm-6">
+                <label for="desc_reporte">Descripción reporte</label>
+                <textarea type="text" required rows="3" id="desc_reporte" class="form-control" placeholder="Descripción reporte"  name="descripcionReporte" maxlength="255"></textarea>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group col-sm-6">
+                <label for="selectPersona">Persona encargada</label>
+                <select class="form-control" id="selectPersona" name="personaEncargada" required>
+                <option value="">Seleccione persona encargado</option>
+                {% for item in encargado %}
+                    <option value="{{item}}">{{ item }}</option>
+                {% endfor %}
+                </select>
+              </div>
+              <div class="form-group col-sm-6">
+                <label>Tipo de archivo</label>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="tipoArchivo" id="chk-csv" value="csv">
+                  <label class="form-check-label" for="exampleRadios2">
+                    csv
+                  </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="tipoArchivo" id="chk-xlsx" value="xlsx">
+                    <label class="form-check-label" for="exampleRadios1">
+                      xlsx
+                    </label>
+                </div>
+                  
+              </div>
+              
+              
+            </div>
+            <div class="form-row">
+              <div class="form-group col-sm-6">
+                <label for="archivoDir">Adjunto</label>
+                <input type="file" class="form-control-file"  name="archivoDir" accept=".xlsx,.csv" required>
+              </div>
+              <button type="submit" class="btn btn-success">Guardar</button>
+            </div>
+           
+            
+        </form>
+    </div>
+    
+</body>
+</html>
